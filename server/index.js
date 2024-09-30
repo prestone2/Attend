@@ -1,3 +1,4 @@
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -8,7 +9,12 @@ const port = 5000;
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/attendance', { useNewUrlParser: true, useUnifiedTopology: true });
+const uri = 'mongodb+srv://prestoneongoro:@attemd.1tjla.mongodb.net/';
+
+mongoose.connect(uri)
+  .then(() => console.log('MongoDB connected globally via Atlas'))
+  .catch(err => console.error('Error connecting to MongoDB:', err));
+
 
 const attendanceSchema = new mongoose.Schema({
   name: String,
